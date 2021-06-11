@@ -7,9 +7,5 @@
 # Editor-based HTTP Client requests
 /httpRequests/
 .idea/
-project/__pycache__/
-project/post/__pycache__/
-project/post/migrations/
-project/user/__pycache__/
-project/user/migrations/
+__pycache__
 db.sqlite3
