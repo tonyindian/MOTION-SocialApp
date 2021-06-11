@@ -21,5 +21,5 @@ class Post(models.Model):
     author = models.ForeignKey(to=User, null=True, blank=True, on_delete=models.CASCADE,
                                related_name='posts')
 
-    like_count = models.ManyToManyField(User, blank=True, related_name='posts_liked')
+    likes = models.ManyToManyField(User, blank=True, related_name='posts_liked')
 
