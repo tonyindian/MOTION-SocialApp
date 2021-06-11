@@ -40,7 +40,7 @@ INSTALLED_APPS = [
 
     #own
     'project.user',
-    'project.post'
+    'project.post',
 ]
 
 MIDDLEWARE = [
