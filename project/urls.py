@@ -27,6 +27,6 @@ jwt_views = [
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('/backend/api/social/posts/', include('post.urls')),
+    path('backend/api/social/posts/', include('project.post.urls')),
     path('token/', include(jwt_views))
 ]
