@@ -8,3 +8,25 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+
+
+class PublicInfoUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username']
+
+
+class FollowersSerializer(serializers.ModelSerializer):
+    followers = PublicInfoUserSerializer(many=True)
+
+    class Meta:
+        model = User
+        fields = ['followers']
+
+
+class FollowingSerializer(serializers.ModelSerializer):
+    followees = PublicInfoUserSerializer(many=True)
+
+    class Meta:
+        model = User
+        fields = ['followees']
