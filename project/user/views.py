@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
-from rest_framework.generics import ListAPIView, UpdateAPIView, RetrieveAPIView, get_object_or_404
+from rest_framework.generics import ListAPIView, UpdateAPIView, RetrieveAPIView, get_object_or_404, GenericAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
 from project.user.serializers import UserSerializer, FollowersSerializer, FollowingSerializer
 
 User = get_user_model()
@@ -12,18 +14,34 @@ class ListUsersAPIView(ListAPIView):
     serializer_class = UserSerializer
 
 
-class ToggleFollowerAPIView(UpdateAPIView):
+# class ToggleFollowerAPIView(UpdateAPIView):
+#     queryset = User.objects.all()
+#     lookup_field = 'id'
+#     permission_classes = [IsAuthenticated]
+#     serializer_class = UserSerializer
+#
+#     def perform_update(self, serializer):
+#         if serializer.instance in self.request.user.followees.all():
+#             self.request.user.followees.remove(serializer.instance)
+#         else:
+#             self.request.user.followees.add(serializer.instance)
+#         serializer.save()
+
+class ToggleFollowerAPIView(GenericAPIView):
     queryset = User.objects.all()
     lookup_field = 'id'
     permission_classes = [IsAuthenticated]
     serializer_class = UserSerializer
 
-    def perform_update(self, serializer):
-        if serializer.instance in self.request.user.followees.all():
-            self.request.user.followees.remove(serializer.instance)
+    def post(self, request, *args, **kwargs):
+        user_id = self.kwargs['id']
+        user_to_follow = User.objects.get(id=user_id)
+        if user_to_follow in self.request.user.followees.all():
+            self.request.user.followees.remove(user_to_follow)
         else:
-            self.request.user.followees.add(serializer.instance)
-        serializer.save()
+            self.request.user.followees.add(user_to_follow)
+        user_to_follow.save()
+        return Response(self.get_serializer(user_to_follow).data)
 
 
 class ListFollowersAPIVIew(RetrieveAPIView):
