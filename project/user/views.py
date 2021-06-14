@@ -1,8 +1,10 @@
 from django.contrib.auth import get_user_model
-from rest_framework.generics import ListAPIView, UpdateAPIView, RetrieveAPIView, get_object_or_404, GenericAPIView
+from rest_framework.generics import ListAPIView, UpdateAPIView, RetrieveAPIView, get_object_or_404, GenericAPIView, \
+    RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from project.post.permissions import IsAuthorOrSuperuserOrReadOnly
 from project.user.serializers import UserSerializer, FollowersSerializer, FollowingSerializer
 
 User = get_user_model()
@@ -64,3 +66,11 @@ class ListFollowingAPIView(RetrieveAPIView):
         queryset = self.get_queryset()
         obj = get_object_or_404(queryset, id=self.request.user.id)
         return obj
+
+
+class RetrieveUserView(RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = 'id'
+
+    permission_classes = [IsAuthorOrSuperuserOrReadOnly]
