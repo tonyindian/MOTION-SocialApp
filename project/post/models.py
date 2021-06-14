@@ -23,3 +23,5 @@ class Post(models.Model):
 
     likes = models.ManyToManyField(User, blank=True, related_name='posts_liked')
 
+    class Meta:
+        ordering = ['-created']
