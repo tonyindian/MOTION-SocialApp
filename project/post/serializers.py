@@ -15,3 +15,4 @@ class LikesOfUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['posts_liked']
+

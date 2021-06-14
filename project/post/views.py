@@ -1,4 +1,6 @@
 from django.contrib.auth import get_user_model
+from django.db.models.functions import Coalesce
+from rest_framework import filters
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, UpdateAPIView, get_object_or_404, \
     RetrieveAPIView, GenericAPIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
@@ -72,6 +74,7 @@ class ListUsersPostAPIView(GenericAPIView):
     queryset = Post.objects.all()
     lookup_field = 'id'
     serializer_class = PostSerializer
+    filter_backends = [filters.OrderingFilter]
 
     # URL params filtering
     def get(self, request, *args, **kwargs):
