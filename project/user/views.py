@@ -1,11 +1,12 @@
 from django.contrib.auth import get_user_model
-from rest_framework.generics import ListAPIView, UpdateAPIView, RetrieveAPIView, get_object_or_404, GenericAPIView, \
-    RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, get_object_or_404, GenericAPIView, \
+    RetrieveUpdateDestroyAPIView, RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from project.post.permissions import IsAuthorOrSuperuserOrReadOnly
-from project.user.serializers import UserSerializer, FollowersSerializer, FollowingSerializer
+from project.user.serializers import UserSerializer, FollowersSerializer, FollowingSerializer,\
+    PrivateInfoUserSerializer
 
 User = get_user_model()
 
@@ -15,19 +16,6 @@ class ListUsersAPIView(ListAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = UserSerializer
 
-
-# class ToggleFollowerAPIView(UpdateAPIView):
-#     queryset = User.objects.all()
-#     lookup_field = 'id'
-#     permission_classes = [IsAuthenticated]
-#     serializer_class = UserSerializer
-#
-#     def perform_update(self, serializer):
-#         if serializer.instance in self.request.user.followees.all():
-#             self.request.user.followees.remove(serializer.instance)
-#         else:
-#             self.request.user.followees.add(serializer.instance)
-#         serializer.save()
 
 class ToggleFollowerAPIView(GenericAPIView):
     queryset = User.objects.all()
@@ -74,3 +62,14 @@ class RetrieveUserView(RetrieveUpdateDestroyAPIView):
     lookup_field = 'id'
 
     permission_classes = [IsAuthorOrSuperuserOrReadOnly]
+
+
+class RetrieveUpdateSelfAPIView(RetrieveUpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = PrivateInfoUserSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        queryset = self.get_queryset()
+        obj = get_object_or_404(queryset, id=self.request.user.id)
+        return obj

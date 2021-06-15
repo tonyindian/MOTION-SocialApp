@@ -16,6 +16,12 @@ class PublicInfoUserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username']
 
 
+class PrivateInfoUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+
+
 class FollowersSerializer(serializers.ModelSerializer):
     followers = PublicInfoUserSerializer(many=True)
 
