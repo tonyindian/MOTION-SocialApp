@@ -20,9 +20,9 @@
 
 
 # Me
-- api/users/me/ GET: Get logged in user’s profile (as well as private information like email, etc.)
+> api/users/me/ GET: Get logged in user’s profile (as well as private information like email, etc.)
 
-- api/users/me/ PATCH: Update the logged in user’s profile public info)
+> api/users/me/ PATCH: Update the logged in user’s profile public info)
 
 
 # Posts
