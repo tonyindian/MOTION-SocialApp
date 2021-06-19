@@ -33,6 +33,14 @@ push latest:
     - docker tag "$CI_PIPELINE_ID":"$CI_COMMIT_REF_NAME" "$CI_REGISTRY_IMAGE":latest
     - docker push "$CI_REGISTRY_IMAGE":latest
 
+push master:
+  stage: push
+  only:
+    - master
+  script:
+    - docker tag "$CI_PIPELINE_ID":"$CI_COMMIT_REF_NAME" "$CI_REGISTRY_IMAGE":master
+    - docker push "$CI_REGISTRY_IMAGE":master
+
 cleanup:
   stage: cleanup
   when: always
@@ -40,9 +48,11 @@ cleanup:
     - docker rmi -f "$CI_PIPELINE_ID":"$CI_COMMIT_REF_NAME"
     - docker-compose -p "$CI_PIPELINE_ID" -f docker-compose.ci.yml down --remove-orphans
 
-deploy:
+deploy prod:
   stage: deploy
   when: manual
+  only:
+    - master
   script:
     - docker-compose -f docker-compose.deploy.yml pull
     - docker-compose -f docker-compose.deploy.yml down --remove-orphans
