@@ -1,6 +1,6 @@
 from django.urls import path
 
-from app.project.user.views import ListUsersAPIView, ToggleFollowerAPIView, ListFollowersAPIVIew, ListFollowingAPIView, \
+from project.user.views import ListUsersAPIView, ToggleFollowerAPIView, ListFollowersAPIVIew, ListFollowingAPIView, \
     RetrieveUserView, RetrieveUpdateSelfAPIView
 
 urlpatterns = [
