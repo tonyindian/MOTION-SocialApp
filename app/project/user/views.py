@@ -4,8 +4,8 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView, get_object_or_
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from project.post.permissions import IsAuthorOrSuperuserOrReadOnly
-from project.user.serializers import UserSerializer, FollowersSerializer, FollowingSerializer,\
+from app.project.post.permissions import IsAuthorOrSuperuserOrReadOnly
+from app.project.user.serializers import UserSerializer, FollowersSerializer, FollowingSerializer,\
     PrivateInfoUserSerializer
 
 User = get_user_model()

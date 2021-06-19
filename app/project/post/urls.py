@@ -1,6 +1,6 @@
 from django.urls import path
 
-from project.post.views import ListCreatePostsView, RetrieveUpdateDeletePostsView, ToggleLikePostAPIView,\
+from app.project.post.views import ListCreatePostsView, RetrieveUpdateDeletePostsView, ToggleLikePostAPIView,\
     ListLikesOfUserAPIView, ListFollowingPostsAPIView, ListUsersPostAPIView
 
 urlpatterns = [
