@@ -30,3 +30,4 @@ COPY ./frontend /frontend_temp
 RUN npm run build
 
 WORKDIR /app
+
