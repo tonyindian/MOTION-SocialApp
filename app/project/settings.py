@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # own
-    'project.user',
-    'project.post',
+    'app.project.user',
+    'app.project.post',
 ]
 
 MIDDLEWARE = [
