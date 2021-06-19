@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from app.project import settings
+from project import settings
 
 
 class User(AbstractUser):
