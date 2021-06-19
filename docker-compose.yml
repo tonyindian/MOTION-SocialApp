@@ -15,7 +15,7 @@ services:
           SECRET_KEY: ${SECRET_KEY}
         depends_on:
           - postgres
-
+        
     postgres:
         image: postgres:latest
         ports:
