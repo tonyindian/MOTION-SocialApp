@@ -6,13 +6,14 @@ import { useEffect, useState } from "react";
 import Axios from "../../API";
 import { useSelector } from "react-redux";
 import Masonry from "react-masonry-css";
+import { v4 as uuidv4 } from "uuid";
 import "./styles.css";
 
 export const FeedMain = styled(Main)`
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.postsBackground};
-  overflow: auto;
+  height: auto;
 `;
 
 const FindFriends = () => {
@@ -30,12 +31,7 @@ const FindFriends = () => {
       try {
         const resp = await Axios.get(url, config);
         if (resp.status === 200) {
-          //console.log(resp);
           setUserList(resp.data.results);
-          /* dispatch({
-            type: "POSTS",
-            payload: resp.data.results,
-          }); */
         }
       } catch (err) {
         if (err.response.status === 400) {
@@ -55,7 +51,7 @@ const FindFriends = () => {
         columnClassName="my-masonry-grid_column"
       >
         {userList.map((user) => (
-          <Person user={user} />
+          <Person user={user} key={uuidv4()} />
         ))}
       </Masonry>
     </FeedMain>
