@@ -37,6 +37,7 @@ const ProfileWrapper = ({
     amount_of_friends,
     amount_of_followers,
     amount_following,
+    location,
   },
 }) => {
   let date = new Date();
@@ -53,7 +54,7 @@ const ProfileWrapper = ({
 
   let history = useHistory();
 
-  function onClickHandler(){
+  function onClickHandler() {
     history.push("/editprofile");
   }
   return (
@@ -61,8 +62,10 @@ const ProfileWrapper = ({
       <LeftContainer>
         <ProfilePictureWrapper src={avatar} />
         <UserNameWrapper>{`${first_name} ${last_name}`}</UserNameWrapper>
-        <TitleWrapper>Zürich</TitleWrapper>
-        <EditProfileButton onClick={onClickHandler}>Edit Profile</EditProfileButton>
+        <TitleWrapper>{location}</TitleWrapper>
+        <EditProfileButton onClick={onClickHandler}>
+          Edit Profile
+        </EditProfileButton>
       </LeftContainer>
       <RightContainer>
         <InformationWrapper>
@@ -75,8 +78,8 @@ const ProfileWrapper = ({
                 <ParagraphWrapper>{email}</ParagraphWrapper>
               </ContactWrapper>
               <ContactWrapper>
-                <TitleWrapper>Phone</TitleWrapper>
-                <ParagraphWrapper>123445678</ParagraphWrapper>
+                <TitleWrapper>Phone Number</TitleWrapper>
+                <ParagraphWrapper>123-456-789</ParagraphWrapper>
               </ContactWrapper>
             </ContactDetailsWrapper>
           </AboutWrapper>

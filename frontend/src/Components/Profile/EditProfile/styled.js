@@ -3,7 +3,7 @@ import { BaseButton } from "../../Verification/Base_Button/styled";
 
 export const Wrapper = styled.div`
   width: 80%;
-  height: 500px;
+  height: 600px;
   min-width: 700px;
   margin-right: 10%;
   margin-left: 10%;
@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   box-shadow: 0px 10px 20px 0px ${(props) => props.theme.black05};
   box-shadow: 0px 0px 1px 0px ${(props) => props.theme.black20};
   position: relative;
-  top: 120px;
+  top: 130px;
 `;
 
 export const LeftContainer = styled.div`
@@ -26,7 +26,7 @@ export const LeftContainer = styled.div`
 `;
 export const RightContainer = styled.div`
   width: 70%;
-  margin: 0 8%;
+  margin: 0 5%;
 `;
 
 export const EditProfileButton = styled(BaseButton)`
@@ -53,7 +53,7 @@ export const PersonalInformationWrapper = styled.div`
   grid-gap: 8%;
 `;
 export const UpdatePersonalInformation = styled.div`
-  margin-top: 10%;
+  margin-top: 5%;
 `;
 export const WhatsonyourMind = styled.div`
   display: flex;
@@ -90,8 +90,16 @@ export const ImageWrapper = styled.img`
   height: 18px;
   margin-right: 10px;
 `;
+export const CameraWrapper = styled(ImageWrapper)`
+  opacity: 1;
+  width: 14px;
+  height: 18px;
+  margin-right: 10px;
+`;
+
 export const SaveButton = styled(EditProfileButton)`
   background: ${(props) => props.theme.linearGradientGradButton};
+  color: ${(props) => props.theme.backgroundWhite};
 `;
 export const InputLabelWrapper = styled.label`
   color: ${(props) => props.theme.black50};
@@ -102,7 +110,7 @@ export const ThingsLiked = styled.button`
   background: ${(props) => props.theme.black05};
   border: none;
   border-radius: 18px;
-  padding: 8px 16px;
+  padding: 8px 25px 8px 16px;
 `;
 
 export const LeftInformationWrapper = styled.div``;
@@ -110,10 +118,38 @@ export const LeftInformationWrapper = styled.div``;
 export const RightInformationWrapper = styled.div``;
 
 export const ThingsWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   align-content: flex-start;
+  font-size: ${(props) => props.theme.textSizeS};
+`;
+export const ThingsILikeTitle = styled.div`
+  font-size: ${(props) => props.theme.textSizeS};
+  padding: 20px 0px;
+`;
+export const DeleteIcon = styled.img`
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin-left: 5px;
+`;
+
+export const FileUpload = styled.input`
+  display: none;
+`;
+export const ChangeBackgroundImageBtn = styled(EditProfileButton)`
+  border: none;
+  font-size: 14px;
+  position: absolute;
+  top: -50px;
+  right: 0px;
+  color: white;
+  opacity: 1;
+`;
+export const BottomButtons = styled.div`
+  margin-top: 30%;
 `;

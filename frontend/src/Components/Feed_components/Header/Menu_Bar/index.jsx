@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import default_avatar from "../../../../Assets/pngs/generic_user.png";
+import React from "react";
 import logo from "../../../../Assets/pngs/logo.png";
 import posts_logo from "../../../../Assets/pngs/posts_logo.png";
 import friends_logo from "../../../../Assets/svgs/icon-friends.svg";
@@ -18,26 +17,20 @@ import {
   UserBtn,
   MenuBtn,
   BaseBtn,
-  ProfilePicture,
 } from "./styled.js";
-import { useSelector } from "react-redux";
 
 const MenuBar = () => {
-  const user = useSelector(state => state.user);
   const history = useHistory();
-  const [buttonState, setButtonState] = useState("posts");
 
   const userBtnHandler = () => {
     history.push("/profile");
   };
 
   const postsBtnHandler = () => {
-    setButtonState("posts");
     history.push("/feed");
   };
 
   const friendsBtnHandler = () => {
-    setButtonState("friends");
     history.push("/friends");
   };
 
@@ -60,7 +53,7 @@ const MenuBar = () => {
           <img src={notification} alt="alert-bell" />
         </BaseBtn>
         <UserBtn onClick={userBtnHandler}>
-          <ProfilePicture src={user.avatar !== null ? user.avatar : default_avatar} alt="user" />  {/* {user.avatar !== null ? user.avatar : default_avatar} */}
+          <img src={jennifer} alt="user" />
         </UserBtn>
         <MenuBtn>
           <img src={menu} alt="menu-button" />

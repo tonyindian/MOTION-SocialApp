@@ -28,6 +28,7 @@ export const BaseBtn = styled.button`
   :hover {
     border-bottom: 2px solid #ad73fd;
     height: 103.5%;
+    cursor: pointer;
   }
 `;
 
@@ -83,8 +84,3 @@ export const UserBtn = styled(BaseBtn)`
   margin-left: 15%;
   height: 100%;
 `;
-
-export const ProfilePicture = styled.img`
-  height: 50px;
-  width: 50px;
-`

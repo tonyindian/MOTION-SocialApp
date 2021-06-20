@@ -93,6 +93,8 @@ export const ProfilePictureWrapper = styled.img`
   margin-top: 20px;
   height: 80px;
   width: 80px;
+  border-radius: 50%;
+  object-fit: cover;
 `;
 
 export const InformationWrapper = styled.div`
