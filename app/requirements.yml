@@ -2,7 +2,6 @@ name: django_motion
 dependencies:
   - python==3.9
   - psycopg2=2.8
-  - pip
   - pip:
       - django==3.2
       - djangorestframework==3.12
