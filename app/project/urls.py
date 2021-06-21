@@ -13,6 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
@@ -29,8 +31,8 @@ schema_view = get_schema_view(
       contact=openapi.Contact(email="teamonemotion@existiert.net"),
       license=openapi.License(name="BSD License"),
    ),
-   public=True, # Set to False restrict access to protected endpoints
-   permission_classes=(permissions.AllowAny,), # Permissions for docs access
+   public=True,  # Set to False restrict access to protected endpoints
+   permission_classes=(permissions.AllowAny,),  # Permissions for docs access
 )
 
 jwt_views = [
