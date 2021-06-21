@@ -32,4 +32,3 @@ frontend/node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/scripts/dev.sh
