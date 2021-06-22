@@ -21,5 +21,8 @@ class Post(models.Model):
 
     likes = models.ManyToManyField(User, blank=True, related_name='posts_liked')
 
+    def __str__(self):
+        return f"Post: {self.id}, Author: {self.author}"
+
     class Meta:
         ordering = ['-created']
