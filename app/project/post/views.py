@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 from .models import Post
 from .permissions import IsAuthorOrSuperuserOrReadOnly
-from .serializers import PostSerializer, LikesOfUserSerializer
+from .serializers import PostSerializer, LikesOfUserSerializer, CreatePostSerialzier
 from ..friendrequest.models import FriendRequest
 
 User = get_user_model()
