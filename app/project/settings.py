@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     # own
     'project.user',
     'project.post',
-    'friendrequest',
+    'project.friendrequest',
+
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

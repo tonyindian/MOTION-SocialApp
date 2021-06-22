@@ -3,10 +3,11 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView, get_object_or_
     RetrieveUpdateDestroyAPIView, RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework import filters
 
 from project.post.permissions import IsAuthorOrSuperuserOrReadOnly
 from project.user.serializers import UserSerializer, FollowersSerializer, FollowingSerializer,\
-    PrivateInfoUserSerializer
+    PrivateInfoUserSerializer, PublicInfoUserSerializer
 
 User = get_user_model()
 
@@ -14,7 +15,19 @@ User = get_user_model()
 class ListUsersAPIView(ListAPIView):
     queryset = User.objects.all()
     permission_classes = [IsAuthenticated]
-    serializer_class = UserSerializer
+    serializer_class = PublicInfoUserSerializer
+
+    filter_backends = (filters.SearchFilter, )
+    search_fields = ['first_name', 'last_name', 'username']
+
+    # def get_queryset(self):
+    #
+    #     #search = self.request.GET.get('search')
+    #     if search:
+    #         #result = self.queryset.filter(Q(first_name__icontains=search) | Q(last_name__icontains=search) | Q(username__icontains=search))
+    #     else:
+    #         result = self.queryset.all()
+    #     return result
 
 
 class ToggleFollowerAPIView(GenericAPIView):
