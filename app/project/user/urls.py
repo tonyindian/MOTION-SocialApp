@@ -9,5 +9,5 @@ urlpatterns = [
     path('social/followers/toggle-follow/<int:id>/', ToggleFollowerAPIView.as_view()),
     path('social/followers/followers/', ListFollowersAPIVIew.as_view()),
     path('social/followers/following/', ListFollowingAPIView.as_view()),
-    path('users/me/', RetrieveUpdateSelfAPIView.as_view()),
+    path('users/me/', RetrieveUpdateSelfAPIView.as_view())
 ]
