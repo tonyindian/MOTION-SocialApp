@@ -1,4 +1,6 @@
 from django.contrib.auth import get_user_model
+from django.db.models import Q
+from rest_framework import filters
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, get_object_or_404, \
     RetrieveAPIView, GenericAPIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
@@ -6,7 +8,9 @@ from rest_framework.response import Response
 
 from .models import Post
 from .permissions import IsAuthorOrSuperuserOrReadOnly
-from .serializers import PostSerializer, LikesOfUserSerializer, CreatePostSerialzier
+from .serializers import PostSerializer, LikesOfUserSerializer
+from ..friendrequest.models import FriendRequest
+
 User = get_user_model()
 
 
@@ -14,6 +18,8 @@ class ListCreatePostsView(ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ['text_content']
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
@@ -83,5 +89,24 @@ class ListUsersPostAPIView(GenericAPIView):
         user_id = kwargs.get('id')
         user = User.objects.get(id=user_id)
         queryset = self.get_queryset().filter(author=user)
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+class ListFriendsPostsAPIView(GenericAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+    def get(self, request, *args, **kwargs):
+        friendrequests = FriendRequest.objects.all().filter(Q(requester=request.user) |
+                                                            Q(receiver=request.user), status='accepted')
+        friends = []
+        for friendrequest in friendrequests:
+            if friendrequest.receiver == request.user:
+                friends.append(friendrequest.requester)
+            if friendrequest.requester == request.user:
+                friends.append(friendrequest.receiver)
+
+        queryset = self.get_queryset().filter(author__in=friends)
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)

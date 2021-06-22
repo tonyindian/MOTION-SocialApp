@@ -11,6 +11,7 @@ __pycache__
 *.sqlite3
 app/project/post/migrations
 app/project/user/migrations
+app/project/friendrequest/migrations
 
 frontend/node_modules
 /.pnp
