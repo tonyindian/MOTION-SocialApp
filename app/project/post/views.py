@@ -6,7 +6,7 @@ from rest_framework.response import Response
 
 from .models import Post
 from .permissions import IsAuthorOrSuperuserOrReadOnly
-from .serializers import PostSerializer, LikesOfUserSerializer
+from .serializers import PostSerializer, LikesOfUserSerializer, CreatePostSerialzier
 User = get_user_model()
 
 
@@ -14,6 +14,11 @@ class ListCreatePostsView(ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return CreatePostSerialzier
+        return PostSerializer
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
