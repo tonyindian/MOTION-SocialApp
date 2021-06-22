@@ -1,7 +1,7 @@
 from django.urls import path
 
 from project.user.views import ListUsersAPIView, ToggleFollowerAPIView, ListFollowersAPIVIew, ListFollowingAPIView, \
-    RetrieveUserView, RetrieveUpdateSelfAPIView# , # SearchUserAPIView
+    RetrieveUserView, RetrieveUpdateSelfAPIView
 
 urlpatterns = [
     path('users/', ListUsersAPIView.as_view()),
