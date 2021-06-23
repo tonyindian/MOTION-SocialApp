@@ -35,7 +35,7 @@ _during the backend-week (starting 21th of June) this page will be updated accor
 
 > api/social/posts/ GET: lists all the posts of all users in chronological order
 
-- api/social/posts/?search=<str:search_string> GET: Search posts of all users and list result in chronological order
+> api/social/posts/?search=<str:search_string> GET: Search posts of all users and list result in chronological order
 
 > api/social/posts/<int:post_id>/ GET: get a specific post by ID and display all the information about that post
 
@@ -47,7 +47,7 @@ _during the backend-week (starting 21th of June) this page will be updated accor
 
 > api/social/posts/following/ GET: lists all the posts of followed users in chronological order
 
-- api/social/posts/friends/ GET: lists all the posts of the logged in user’s friends in chronological order
+> api/social/posts/friends/ GET: lists all the posts of the logged in user’s friends in chronological order
 
 > api/social/posts/toggle-like/int:post_id>/ POST: Toggle like a post
 
@@ -66,19 +66,19 @@ _during the backend-week (starting 21th of June) this page will be updated accor
 
 > api/social/followers/following/ GET: List of all the people the current logged in user is following
 
-- api/social/friends/request/<int:user_id>/ POST: Send friend request to another user
+> api/social/friends/request/<int:user_id>/ POST: Send friend request to another user
 
-- api/social/friends/requests/<int:friend_request_id>/ GET: Get details of a friend request
+> api/social/friends/requests/<int:friend_request_id>/ GET: Get details of a friend request
 
-- api/social/friends/requests/<int:friend_request_id>/ PATCH: Accept or Reject an open friend request
+> api/social/friends/requests/<int:friend_request_id>/ PATCH: Accept or Reject an open friend request
 
-- api/social/friends/requests/<int:friend_request_id>/ DELETE: Delete a friend request
+> api/social/friends/requests/<int:friend_request_id>/ DELETE: Delete a friend request
 
-- api/social/friends/ GET: List all accepted friends
+> api/social/friends/ GET: List all accepted friends
 
 > api/users/ GET: Get all the users
 
-- api/users/?search=<str:search_string> GET: Search users
+> api/users/?search=<str:search_string> GET: Search users
 
 > api/users/<int:user_id>/ GET: Get specific user profile
 

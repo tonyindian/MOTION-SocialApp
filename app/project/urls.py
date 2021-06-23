@@ -30,5 +30,6 @@ urlpatterns = [
     path('backend/api/social/posts/', include('project.post.urls')),
     path('backend/api/social/friends/', include('project.friendrequest.urls')),
     path('backend/api/', include('project.user.urls')),
-    path('backend/api/auth/token/', include(jwt_views))
+    path('backend/api/auth/token/', include(jwt_views)),
+    path('backend/api/auth/', include('project.authprofile.urls'))
 ]

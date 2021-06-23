@@ -10,7 +10,7 @@ export const FeedMain = styled(Main)`
 export const PostsBody = styled.div`
   display: flex;
   width: 100%;
-  height: 100%
+  height: 100%;
   overflow: auto;
 `;
 
