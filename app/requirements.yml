@@ -9,3 +9,4 @@ dependencies:
       - gunicorn
       - flake8
       - drf-yasg
+      - pillow

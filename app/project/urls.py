@@ -26,7 +26,7 @@ schema_view = get_schema_view(
    openapi.Info(
       title="TEAMONE - MOTION Project",
       default_version='v1',
-      description="this is pretty much everything wysiwyg. so don't overthink it.:)",
+      description="Motion Social Network by Propulsion Academy students",
       terms_of_service="https://www.google.com/policies/terms/",
       contact=openapi.Contact(email="teamonemotion@existiert.net"),
       license=openapi.License(name="BSD License"),
