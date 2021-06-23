@@ -9,10 +9,11 @@
 .idea/
 __pycache__
 *.sqlite3
-app/project/post/migrations
-app/project/user/migrations
-app/project/friendrequest/migrations
-app/project/authprofile/migrations
+app/project/post/migrations/[0-9]*.py
+app/project/user/migrations/[0-9]*.py
+app/project/friendrequest/migrations/[0-9]*.py
+app/project/authprofile/migrations/[0-9]*.py
+app/project/comment/migrations/[0-9]*.py
 
 frontend/node_modules
 /.pnp
