@@ -1,4 +1,5 @@
 #!/bin/bash
+python manage.py makemigrations
 python manage.py migrate
 python manage.py collectstatic --no-input
 rm -rf /frontend/build/* && cp -r /frontend_temp/* /frontend

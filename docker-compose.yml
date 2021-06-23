@@ -11,8 +11,8 @@ services:
           - ./static-files:/static-files
           - ./media-files:/media-files
         command: "sh /scripts/dev.sh"
-        environment:
-          SECRET_KEY: ${SECRET_KEY}
+        #environment:
+          #SECRET_KEY: ${SECRET_KEY}
         depends_on:
           - postgres
         
