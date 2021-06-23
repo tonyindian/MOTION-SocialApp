@@ -43,13 +43,13 @@ INSTALLED_APPS = [
 
     # third-party
     'drf_yasg',
+    'rest_framework',
 
     # own
     'project.user',
     'project.post',
     'project.friendrequest',
-
-    'rest_framework',
+    'project.comment',
 ]
 
 MIDDLEWARE = [

@@ -19,6 +19,13 @@ class PostSerializer(serializers.ModelSerializer):
         read_only_fields = ['author']
 
 
+class CreatePostSerialzier(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = '__all__'
+        read_only_fields = ['author', 'likes']
+
+
 class LikesOfUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
