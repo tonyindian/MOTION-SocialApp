@@ -12,6 +12,7 @@ __pycache__
 app/project/post/migrations
 app/project/user/migrations
 app/project/friendrequest/migrations
+app/project/authprofile/migrations
 
 frontend/node_modules
 /.pnp

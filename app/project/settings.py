@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'project.user',
     'project.post',
     'project.friendrequest',
+    'project.authprofile',
     'project.comment',
 ]
 
