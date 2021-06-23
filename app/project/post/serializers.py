@@ -19,7 +19,7 @@ class PostSerializer(serializers.ModelSerializer):
         read_only_fields = ['author']
 
 
-class CreatePostSerialzier(serializers.ModelSerializer):
+class CreatePostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = '__all__'

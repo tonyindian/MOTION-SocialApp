@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 from .models import Post
 from .permissions import IsAuthorOrSuperuserOrReadOnly
-from .serializers import PostSerializer, LikesOfUserSerializer, CreatePostSerialzier
+from .serializers import PostSerializer, LikesOfUserSerializer, CreatePostSerializer
 from ..friendrequest.models import FriendRequest
 
 User = get_user_model()
@@ -23,7 +23,7 @@ class ListCreatePostsView(ListCreateAPIView):
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
-            return CreatePostSerialzier
+            return CreatePostSerializer
         return PostSerializer
 
     def perform_create(self, serializer):
