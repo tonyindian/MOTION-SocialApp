@@ -8,3 +8,5 @@ dependencies:
       - djangorestframework_simplejwt==4.7
       - gunicorn
       - flake8
+      - drf-yasg
+      - pillow
