@@ -10,8 +10,8 @@ services:
           - media-files:/media-files
           - frontend:/frontend/build
         command: "sh /scripts/run.sh"
-        environment:
-          SECRET_KEY: ${SECRET_KEY}
+        #environment:
+          #SECRET_KEY: ${SECRET_KEY}
         depends_on:
           - postgres
 
