@@ -95,14 +95,14 @@ const SignIn = () => {
           <Title>Sign In</Title>
           <InputDiv>
             <Input
-              name="Username"
+              name="Email"
               type="text"
               icon={avatarIcon}
               onChange={onEmailChange}
             />
             <Input
               name="Password"
-              type="Password"
+              type="password"
               icon={passwordIcon}
               onChange={onPasswordChange}
             />

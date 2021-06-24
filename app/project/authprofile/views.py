@@ -29,7 +29,7 @@ class RegisterNewUserAPIView(CreateAPIView):
         message = 'Enter this code to verify your account: ' + verification_code
         recipient = self.request.data.get('email')
         send_email(subject, message, recipient)
-        serializer.save(user=user, base_code=verification_code)
+        serializer.save(user=user, verification_code=verification_code)
         return Response(status=HTTP_200_OK)
 
 
