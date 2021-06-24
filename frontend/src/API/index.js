@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://motion.propulsion-home.ch/backend/api/";
+const baseURL = "https://teamonemotion.propulsion-learn.ch/backend/api/";
 
 const Axios = axios.create({
   baseURL: baseURL,
