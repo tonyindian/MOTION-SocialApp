@@ -21,6 +21,7 @@ class CreateFriendRequestAPIView(CreateAPIView):
         user_id = self.kwargs['id']
         new_friend = User.objects.get(id=user_id)
         serializer.save(requester=self.request.user, receiver=new_friend)
+        
         return Response(serializer.data)
 
 
