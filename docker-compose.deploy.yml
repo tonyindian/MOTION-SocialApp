@@ -1,42 +1,41 @@
 version: '3'
 services:
-    backend:
-        image: registry.gitlab.propulsion-home.ch/full-stack/batch-16-may-2021/motion-backend/team1:master
-        restart: always
-        env_file:
-          - ./env/prod.env
-        volumes:
-          - static-files:/static-files
-          - media-files:/media-files
-          - frontend:/frontend/build
-        command: "sh /scripts/run.sh"
-        environment:
-          SECRET_KEY: ${SECRET_KEY}
-        depends_on:
-          - postgres
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - frontend:/frontend
+      - ./nginx:/etc/nginx/conf.d
+      - media-files:/media-files
+      - static-files:/static-files
+      - /etc/letsencrypt:/etc/letsencrypt
 
-    postgres:
-        image: postgres:latest
-        env_file:
-          - ./env/prod.env
-        volumes:
-          - postgres_volume:/var/lib/postgresql/data
-
-    nginx:
-        image: nginx:latest
-        restart: always
-        ports:
-          - "80:80"
-          - "443:443"
-        volumes:
-          - ./nginx:/etc/nginx/conf.d
-          - static-files:/static-files
-          - media-files:/media-files
-          - frontend:/frontend
-          - /etc/letsencrypt:/etc/letsencrypt
-
+  backend:
+    image: registry.gitlab.propulsion-home.ch/full-stack/batch-16-may-2021/motion-backend/team1:master
+    restart: always
+    env_file:
+      - ./envs/dev.env
+    command: 'sh /scripts/run.sh'
+    volumes:
+      - frontend:/frontend/build
+      - media-files:/media-files
+      - static-files:/static-files
+    depends_on:
+      - postgres
+      
+  postgres:
+    image: postgres:latest
+    # these volumes pass the data from your computer to the docker container
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    env_file:
+      - ./envs/dev.env
+# this volume create directory in your computer so that if no matter what happens to the container the data will not be delete
 volumes:
-  postgres_volume:
-  static-files:
+  postgres:
   media-files:
+  static-files:
   frontend:
