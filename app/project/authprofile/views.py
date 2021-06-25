@@ -25,11 +25,12 @@ class RegisterNewUserAPIView(CreateAPIView):
     def perform_create(self, serializer):
         user = User.objects.create_user(self.request.data.get('email').split('@')[0], self.request.data.get('email'))
         verification_code = math.floor(random() * 1000000)
-        subject = 'Your verification code'
-        message = 'Enter this code to verify your account: ' + verification_code
+        subject = 'Welcome to TeamONE Motion - Verify your Email'
+        message = 'Dear Motioner \n' \
+                  'Please enter the following code to verify your account: ' + str(verification_code)
         recipient = self.request.data.get('email')
         send_email(subject, message, recipient)
-        serializer.save(user=user, base_code=verification_code)
+        serializer.save(user=user, verification_code=verification_code)
         return Response(status=HTTP_200_OK)
 
 

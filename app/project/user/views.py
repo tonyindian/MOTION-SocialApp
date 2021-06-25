@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import filters
 
+from project.helpers.email import send_email
 from project.post.permissions import IsAuthorOrSuperuserOrReadOnly
 from project.user.serializers import UserSerializer, FollowersSerializer, FollowingSerializer,\
     PrivateInfoUserSerializer, PublicInfoUserSerializer
@@ -38,13 +39,24 @@ class ToggleFollowerAPIView(GenericAPIView):
 
     def post(self, request, *args, **kwargs):
         user_id = self.kwargs['id']
-        user_to_follow = User.objects.get(id=user_id)
-        if user_to_follow in self.request.user.followees.all():
-            self.request.user.followees.remove(user_to_follow)
+        # the sender of the follow request
+        follower = self.request.user
+        # the recipient of the follow request
+        followee = User.objects.get(id=user_id)
+
+        if followee in follower.followees.all():
+            follower.followees.remove(followee)
         else:
-            self.request.user.followees.add(user_to_follow)
-        user_to_follow.save()
-        return Response(self.get_serializer(user_to_follow).data)
+            follower.followees.add(followee)
+        followee.save()
+
+        subject = 'You have new follower'
+        message = f' Hi {followee.first_name} \n ' \
+                  f'{follower.first_name} {follower.last_name} is now following you! '
+        recipient = followee.email
+        send_email(subject, message, recipient)
+
+        return Response(self.get_serializer(followee).data)
 
 
 class ListFollowersAPIVIew(RetrieveAPIView):
